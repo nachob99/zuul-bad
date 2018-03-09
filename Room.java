@@ -20,6 +20,7 @@ public class Room
     public Room southEastExit;
     public Room eastExit;
     public Room westExit;
+    public Room northEastExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -40,10 +41,12 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east,Room southEast, Room south, Room west) 
+    public void setExits(Room north,Room northEast, Room east,Room southEast, Room south, Room west) 
     {
         if(north != null)
             northExit = north;
+        if(northEast != null)
+            northEastExit = northEast;
         if(east != null)
             eastExit = east;
         if(southEast != null)
@@ -61,5 +64,67 @@ public class Room
     {
         return description;
     }
-
+    
+    public Room getExit(String direccion){
+         Room salaADevolver = null;
+        if(direccion.equals("north")){
+            salaADevolver=northExit;
+        }
+        if(direccion.equals("northEast")){
+            salaADevolver=northEastExit;
+        }
+        if(direccion.equals("south")){
+            salaADevolver=southExit;
+        }
+        if(direccion.equals("southEast")){
+            salaADevolver=southEastExit;
+        }
+        if(direccion.equals("east")){
+            salaADevolver=eastExit;
+        }
+        if(direccion.equals("west")){
+            salaADevolver=westExit;
+        }
+        
+        return salaADevolver;
+    }
+    
+    /**
+     * Return a description of the room's exits.
+     * For example: "Exits: north east west"
+     *
+     * @ return A description of the available exits.
+     */
+    public String getExitString(){
+        String exits = "Exit:";
+        if(northExit != null){
+            exits = "north :";
+        
+        }
+        if(northEastExit != null){
+            exits = "northEast :";
+        
+        }
+        if(southExit != null){
+            exits = "south :";
+        
+        }
+        if(eastExit != null){
+            exits = "east :";
+        
+        }
+        if(westExit != null){
+            exits = "west :";
+        
+        }
+        if(northExit != null){
+            exits = "north :";
+        
+        }
+        if(southEastExit != null){
+            exits = "southEast :";
+        
+        }
+        return exits;
+    }
 }

@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -34,22 +34,22 @@ public class Game
      */
     private void createRooms()
     {
-        Room hall, salon, cocina, habitacion, terraza;
-      
+        Room hall, salon, cocina, habitacion, terraza, comedor;
+
         // create the rooms
         hall = new Room("in the hall");
-        salon = new Room("in the salon");
-        cocina = new Room("in the cocina");
-        habitacion = new Room("in the habitacion");
-        terraza = new Room("in the  terraza");
-        
+        salon = new Room("in the living room");
+        cocina = new Room("in the kitchen");
+        habitacion = new Room("in the room");
+        terraza = new Room("in the  terrace");
+        comedor = new Room("in the dinning room");
         // initialise room exits
-        hall.setExits(null, null, null, salon, null);
-        salon.setExits(hall, null, habitacion, null, cocina);
-        cocina.setExits(null, salon, null, terraza, null);
-        habitacion.setExits(null, null, null, null , null);
-        terraza.setExits(cocina, null, null, null, null);
-
+        hall.setExits(null, null ,null, null, salon, null);
+        salon.setExits(hall, comedor, cocina, habitacion, null ,null);
+        cocina.setExits(null,null, salon, null, terraza, null);
+        habitacion.setExits(null, salon, null, null , null ,null);
+        terraza.setExits(cocina, null, null, null, null ,null);
+        comedor.setExits(null, null, null, salon, null, null);
         currentRoom = hall;  // start game hall
     }
 
@@ -62,7 +62,7 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -145,22 +145,7 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = null;
-        if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("southEast")) {
-            nextRoom = currentRoom.southEastExit;
-        }
-        if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
+        Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -169,7 +154,7 @@ public class Game
             currentRoom = nextRoom;
             System.out.println("You are " + currentRoom.getDescription());
             System.out.print("Exits: ");
-            
+
             printLocationInfo();
         }
     }
@@ -189,24 +174,12 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    
+
     private void printLocationInfo(){
-         if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southEastExit != null) {
-            System.out.print("southEast ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
-        System.out.println();
-    
+        System.out.println(currentRoom.getExitString());
+        
+
     }
+
+    
 }

@@ -44,11 +44,11 @@ public class Game
         terraza = new Room("in the  terraza");
         
         // initialise room exits
-        hall.setExits(null, null, salon, null);
-        salon.setExits(null, cocina, hall, habitacion);
-        cocina.setExits(null, null, terraza, salon);
-        habitacion.setExits(null, salon,null , null);
-        terraza.setExits(cocina, null, null, null);
+        hall.setExits(null, null, null, salon, null);
+        salon.setExits(hall, null, habitacion, null, cocina);
+        cocina.setExits(null, salon, null, terraza, null);
+        habitacion.setExits(null, null, null, null , null);
+        terraza.setExits(cocina, null, null, null, null);
 
         currentRoom = hall;  // start game hall
     }
@@ -152,6 +152,9 @@ public class Game
         if(direction.equals("east")) {
             nextRoom = currentRoom.eastExit;
         }
+        if(direction.equals("southEast")) {
+            nextRoom = currentRoom.southEastExit;
+        }
         if(direction.equals("south")) {
             nextRoom = currentRoom.southExit;
         }
@@ -193,6 +196,9 @@ public class Game
         }
         if(currentRoom.eastExit != null) {
             System.out.print("east ");
+        }
+        if(currentRoom.southEastExit != null) {
+            System.out.print("southEast ");
         }
         if(currentRoom.southExit != null) {
             System.out.print("south ");

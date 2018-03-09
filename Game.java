@@ -44,11 +44,11 @@ public class Game
         terraza = new Room("Esta usted en la terraza");
         
         // initialise room exits
-        hall.setExits(salon, null, null, null);
+        hall.setExits(null, null, salon, null);
         salon.setExits(null, cocina, hall, habitacion);
-        cocina.setExits(null, null, null, salon);
-        habitacion.setExits(null, salon, null, null);
-        terraza.setExits(null, null, cocina, null);
+        cocina.setExits(cocina, null, terraza, null);
+        habitacion.setExits(null, salon,null , null);
+        terraza.setExits(cocina, null, null, null);
 
         currentRoom = hall;  // start game hall
     }

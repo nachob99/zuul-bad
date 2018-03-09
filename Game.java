@@ -37,16 +37,16 @@ public class Game
         Room hall, salon, cocina, habitacion, terraza;
       
         // create the rooms
-        hall = new Room("Esta usted en el hall");
-        salon = new Room("Esta usted en el salon");
-        cocina = new Room("Esta usted en la cocina");
-        habitacion = new Room("Esta usted en la habitacion");
-        terraza = new Room("Esta usted en la terraza");
+        hall = new Room("in the hall");
+        salon = new Room("in the salon");
+        cocina = new Room("in the cocina");
+        habitacion = new Room("in the habitacion");
+        terraza = new Room("in the  terraza");
         
         // initialise room exits
         hall.setExits(null, null, salon, null);
         salon.setExits(null, cocina, hall, habitacion);
-        cocina.setExits(cocina, null, terraza, null);
+        cocina.setExits(null, null, terraza, salon);
         habitacion.setExits(null, salon,null , null);
         terraza.setExits(cocina, null, null, null);
 
@@ -83,19 +83,7 @@ public class Game
         System.out.println();
         System.out.println("You are " + currentRoom.getDescription());
         System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
-        System.out.println();
+        printLocationInfo();
     }
 
     /**
@@ -178,19 +166,8 @@ public class Game
             currentRoom = nextRoom;
             System.out.println("You are " + currentRoom.getDescription());
             System.out.print("Exits: ");
-            if(currentRoom.northExit != null) {
-                System.out.print("north ");
-            }
-            if(currentRoom.eastExit != null) {
-                System.out.print("east ");
-            }
-            if(currentRoom.southExit != null) {
-                System.out.print("south ");
-            }
-            if(currentRoom.westExit != null) {
-                System.out.print("west ");
-            }
-            System.out.println();
+            
+            printLocationInfo();
         }
     }
 
@@ -208,5 +185,22 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+    
+    private void printLocationInfo(){
+         if(currentRoom.northExit != null) {
+            System.out.print("north ");
+        }
+        if(currentRoom.eastExit != null) {
+            System.out.print("east ");
+        }
+        if(currentRoom.southExit != null) {
+            System.out.print("south ");
+        }
+        if(currentRoom.westExit != null) {
+            System.out.print("west ");
+        }
+        System.out.println();
+    
     }
 }

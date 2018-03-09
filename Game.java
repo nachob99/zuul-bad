@@ -45,7 +45,7 @@ public class Game
         comedor = new Room("in the dinning room");
         // initialise room exits
         hall.setExits(null, null ,null, null, salon, null);
-        salon.setExits(hall, comedor, cocina, habitacion, null ,null);
+        salon.setExits(hall, comedor, null, habitacion, null ,cocina);
         cocina.setExits(null,null, salon, null, terraza, null);
         habitacion.setExits(null, salon, null, null , null ,null);
         terraza.setExits(cocina, null, null, null, null ,null);
@@ -82,7 +82,6 @@ public class Game
         System.out.println("Type 'help' if you need help.");
         System.out.println();
         System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
         printLocationInfo();
     }
 

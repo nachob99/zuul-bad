@@ -44,12 +44,16 @@ public class Game
         terraza = new Room("in the  terrace");
         comedor = new Room("in the dinning room");
         // initialise room exits
-        hall.setExits(null, null ,null, null, salon, null);
-        salon.setExits(hall, comedor, null, habitacion, null ,cocina);
-        cocina.setExits(null,null, salon, null, terraza, null);
-        habitacion.setExits(null, salon, null, null , null ,null);
-        terraza.setExits(cocina, null, null, null, null ,null);
-        comedor.setExits(null, null, null, salon, null, null);
+        hall.setExits("south",salon);
+        salon.setExits("southEast", habitacion);
+        salon.setExits("north",hall);
+        salon.setExits("northEast", comedor);
+        salon.setExits("west",cocina);
+        cocina.setExits("east",salon);
+        cocina.setExits("south",terraza);
+        habitacion.setExits("northwest", salon);
+        terraza.setExits("north",cocina);
+        comedor.setExits("southWest",salon);
         currentRoom = hall;  // start game hall
     }
 

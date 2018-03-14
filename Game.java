@@ -112,7 +112,7 @@ public class Game
         else if (commandWord.equals("look")) {
             look();
         }
-         else if (commandWord.equals("eat")) {
+        else if (commandWord.equals("eat")) {
             eat();
         }
 
@@ -134,7 +134,7 @@ public class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        parser.showCommands();
     }
 
     /** 
@@ -161,7 +161,6 @@ public class Game
             currentRoom = nextRoom;
             System.out.println("You are " + currentRoom.getDescription());
             System.out.print("Exits: ");
-
             printLocationInfo();
         }
     }

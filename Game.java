@@ -109,15 +109,17 @@ public class Game
         else if (commandWord.equals("go")) {
             goRoom(command);
         }
+        else if (commandWord.equals("look")) {
+            look();
+        }
+
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
 
         return wantToQuit;
     }
-
     // implementations of user commands:
-
     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
@@ -179,8 +181,11 @@ public class Game
 
     private void printLocationInfo(){
         System.out.println("You are " + currentRoom.getDescription());
-        
+
     }
 
-    
+    private void look() 
+    {
+        System.out.println(currentRoom.getLongDescription());
+    }
 }

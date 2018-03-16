@@ -55,6 +55,10 @@ public class Game
         habitacion.setExits("northwest", salon);
         terraza.setExits("north",cocina);
         comedor.setExits("southWest",salon);
+        
+        
+        comedor.addItem("coca", 200);
+        comedor.addItem("pastis",5);
         currentRoom = hall;  // start game hall
     }
     
@@ -190,6 +194,7 @@ public class Game
     private void look() 
     {
         System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.informacionObjetosDeLaSala());
     }
     
     private void eat(){

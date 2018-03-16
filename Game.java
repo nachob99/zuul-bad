@@ -59,15 +59,14 @@ public class Game
         terraza.setExits("north",cocina);
         comedor.setExits("southWest",salon);
         //sala anterior
-        
+
         //Añadir objetos
         comedor.addItem("coca", 200);
         comedor.addItem("pastis",5);
-        
-        
+
         currentRoom = hall;  // start game hall
     }
-    
+
     /**
      *  Main play routine.  Loops until end of play.
      */
@@ -121,8 +120,8 @@ public class Game
             goRoom(command);
         }
         else if (commandWord.equals("back")){
-                back();
-      
+            back();
+
         }
         else if (commandWord.equals("look")) {
             look();
@@ -158,7 +157,7 @@ public class Game
      */
     private void goRoom(Command command) 
     {
-        ultimaSala = currentRoom;
+       
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
@@ -169,12 +168,12 @@ public class Game
 
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
-        stack.push(ultimaSala);
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
-            currentRoom = nextRoom;
+            stack.push(currentRoom);
+            currentRoom = currentRoom.getExit(direction);
             printLocationInfo();
         }
     }
@@ -205,21 +204,21 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
         System.out.println(currentRoom.informacionObjetosDeLaSala());
     }
-    
+
     private void eat(){
         System.out.println("You have eaten now and you are not hungry any more");
     }
-    
+
     private void back(){
-       if(!stack.empty()){
-           currentRoom= stack.pop();
-           printLocationInfo();
+        if(!stack.empty()){
+            currentRoom= stack.pop();
+            printLocationInfo();
         }
-        
-       else{
-           System.out.println("No se puede volver para atras");
-        
+
+        else{
+            System.out.println("No se puede volver para atras");
+
         }
-    
+
     }
 }

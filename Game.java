@@ -38,12 +38,12 @@ public class Game
         Room hall, salon, cocina, habitacion, terraza, comedor;
 
         // create the rooms
-        hall = new Room("in the hall" , null);
-        salon = new Room("in the living room", null);
-        cocina = new Room("in the kitchen", null);
-        habitacion = new Room("in the room" , new Item("coca", 200));
-        terraza = new Room("in the  terrace" , null);
-        comedor = new Room("in the dinning room" , null);
+        hall = new Room("in the hall");
+        salon = new Room("in the living room");
+        cocina = new Room("in the kitchen");
+        habitacion = new Room("in the room");
+        terraza = new Room("in the  terrace");
+        comedor = new Room("in the dinning room");
         // initialise room exits
         hall.setExits("south",salon);
         salon.setExits("southEast", habitacion);
@@ -58,9 +58,6 @@ public class Game
         currentRoom = hall;  // start game hall
     }
     
-    private void createItem(){
-        
-    }
     /**
      *  Main play routine.  Loops until end of play.
      */

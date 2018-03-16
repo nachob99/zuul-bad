@@ -16,17 +16,22 @@ public class Item
      */
     public Item(String description , int itemWeigth)
     {
-        
+
         this.itemDescription=description;
         this.itemWeigth = itemWeigth;
-        
+
     }
 
     public String getDescription(){
         return itemDescription;
     }
-    
+
     public int getPeso(){
-         return itemWeigth ;
+        return itemWeigth ;
+    }
+
+    public String informacionItem(){
+        return getDescription() + " " + ":" + " "+ getPeso() ;
+
     }
 }

@@ -92,29 +92,29 @@ public class Room
      * @ return A description of the available exits.
      */
     public String getExitString(){
-        String exits = "Exit:";
+        String exits = "";
         if(salidas.get("north") != null){
-            exits += "north :";
+            exits += "north ";
 
         }
         if(salidas.get("northEast") != null){
-            exits += "northEast :";
+            exits += "northEast ";
 
         }
         if(salidas.get("south") != null){
-            exits += "south :";
+            exits += "south ";
 
         }
         if(salidas.get("east") != null){
-            exits += "east :";
+            exits += "east ";
 
         }
         if(salidas.get("west") != null){
-            exits += "west :";
+            exits += "west ";
 
         }
         if(salidas.get("southEast") != null){
-            exits += "southEast :";
+            exits += "southEast ";
 
         }
         return exits;
@@ -128,10 +128,10 @@ public class Room
      */
     public String getLongDescription()
     {
-        String descripcion = "Estás en " + description + "Salidas: " + getExitString();
+        String descripcion = "You are " + description + "\nSalidas: \n" + getExitString();
         if (item != null){
 
-            descripcion += "Tu item :" + item.getDescription() + "tiene un peso:" + item.getPeso();
+            descripcion += "\nTu item :" + item.getDescription() + "tiene un peso:" + item.getPeso();
         }
         return descripcion;
     }

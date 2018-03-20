@@ -158,4 +158,14 @@ public class Room
 
         return informacionObjetos;
     }
+    
+    public ArrayList getItem(){
+        return listaItems;
+       
+    }
+    
+    public void itemQueSoltar(Item item)
+    {
+        listaItems.add(item);        
+    }
 }

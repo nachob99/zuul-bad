@@ -10,13 +10,14 @@ public class Item
     // instance variables - replace the example below with your own
     private int itemWeigth;
     private String itemDescription;
+    private String id;
 
     /**
      * Constructor for objects of class item
      */
-    public Item(String description , int itemWeigth)
+    public Item(String id ,String description , int itemWeigth)
     {
-
+        this.id = id;
         this.itemDescription=description;
         this.itemWeigth = itemWeigth;
 
@@ -29,9 +30,15 @@ public class Item
     public int getPeso(){
         return itemWeigth ;
     }
+    
+    public String getId(){
+        return id;
+    
+    }
 
     public String informacionItem(){
         return getDescription() + " " + ":" + " "+ getPeso() ;
 
     }
+    
 }

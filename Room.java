@@ -136,8 +136,8 @@ public class Room
         return descripcion;
     }
 
-    public void addItem(String itemDescription, int itemWeigth){
-        Item itemAñadido = new Item (itemDescription,itemWeigth);
+    public void addItem(String id ,String itemDescription, int itemWeigth){
+        Item itemAñadido = new Item (id,itemDescription,itemWeigth);
         listaItems.add(itemAñadido);
 
     }
@@ -157,5 +157,15 @@ public class Room
         }
 
         return informacionObjetos;
+    }
+    
+    public ArrayList getItem(){
+        return listaItems;
+       
+    }
+    
+    public void itemQueSoltar(Item item)
+    {
+        listaItems.add(item);        
     }
 }

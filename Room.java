@@ -179,4 +179,9 @@ public class Room
         listaItems.remove(itemCogido);
         return itemCogido;
     }
+    
+    public void itemASoltar(Item item){
+        listaItems.add(item);
+    
+    }
 }

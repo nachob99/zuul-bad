@@ -97,4 +97,25 @@ public class Player
             System.out.println("Tienes la mochila vacía.");
         }
     }
-}
+    
+     public void drop(Command command)
+    {
+        
+       
+            String item = command.getSecondWord();
+            Item itemABorrar = null;
+            for (Item itemASoltar : mochila) {
+                if (itemASoltar.getId().equals(item)) {
+                    itemABorrar= itemASoltar;                    
+                }
+            }
+            mochila.remove(itemABorrar);
+            if (itemABorrar == null) {
+                System.out.println("NO tienes ese objeto!");
+            }
+            else {
+                currentRoom.itemASoltar(itemABorrar);
+                System.out.println("Has soltado " + itemABorrar.getDescription() + ", con un peso de " + itemABorrar.getPeso());
+            }
+        }
+    }

@@ -75,6 +75,7 @@ public class Player
         String item = command.getSecondWord();
         Item itemACoger = currentRoom.itemACoger(item);
         mochila.add(itemACoger);
+        
         System.out.println("Has recogido" + itemACoger.getDescription());
     }
 }

@@ -24,7 +24,7 @@ public class Room
     public Room westExit;
     public Room northEastExit;
     public HashMap<String,Room> salidas;
-    private Item item;
+    public Item item;
     private ArrayList<Item> listaItems;
     /**
      * Create a room described "description". Initially, it has
@@ -37,7 +37,6 @@ public class Room
         this.description = description;
         salidas = new HashMap<>();
         listaItems = new ArrayList<Item>();
-
     }
 
     /**
@@ -167,5 +166,17 @@ public class Room
     public void itemQueSoltar(Item item)
     {
         listaItems.add(item);        
+    }
+    
+    public Item itemACoger(String item ){
+        Item itemCogido = null;
+        for(Item itemActual : listaItems){
+            if(itemActual.getId().equals(item)){
+                itemCogido = itemActual;
+            }
+        
+        }
+        listaItems.remove(itemCogido);
+        return itemCogido;
     }
 }

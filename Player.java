@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.ArrayList;
 /**
  * Write a description of class player here.
  *
@@ -10,7 +11,7 @@ public class Player
     // instance variables - replace the example below with your own
     private Room currentRoom;
     private Stack<Room> stack;
-
+    private ArrayList<Item> mochila;
     /**
      * Constructor for objects of class player
      */
@@ -19,6 +20,7 @@ public class Player
         name="nacho";
         stack = new Stack();
         this.currentRoom = startRoom;
+        mochila = new ArrayList<>();
     }
 
     public Room getRoom(){
@@ -67,5 +69,12 @@ public class Player
 
         }
 
+    }
+    
+    public void take(Command command){
+        String item = command.getSecondWord();
+        Item itemACoger = currentRoom.itemACoger(item);
+        mochila.add(itemACoger);
+        System.out.println("Has recogido" + itemACoger.getDescription());
     }
 }

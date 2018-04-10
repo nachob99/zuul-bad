@@ -135,8 +135,8 @@ public class Room
         return descripcion;
     }
 
-    public void addItem(String id ,String itemDescription, int itemWeigth){
-        Item itemAñadido = new Item (id,itemDescription,itemWeigth);
+    public void addItem(String id ,String itemDescription, int itemWeigth, boolean cogerObjeto){
+        Item itemAñadido = new Item (id,itemDescription,itemWeigth,cogerObjeto);
         listaItems.add(itemAñadido);
 
     }

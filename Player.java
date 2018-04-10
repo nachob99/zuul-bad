@@ -12,6 +12,7 @@ public class Player
     private Room currentRoom;
     private Stack<Room> stack;
     private ArrayList<Item> mochila;
+    private Item item;
     /**
      * Constructor for objects of class player
      */
@@ -48,6 +49,7 @@ public class Player
         }
 
     }
+
     public void look() 
     {
         System.out.println(currentRoom.getLongDescription());
@@ -70,12 +72,17 @@ public class Player
         }
 
     }
-    
+
     public void take(Command command){
         String item = command.getSecondWord();
         Item itemACoger = currentRoom.itemACoger(item);
-        mochila.add(itemACoger);
+        if(itemACoger.getCogerObjeto()){
+            mochila.add(itemACoger);
+            System.out.println("Has recogido" + itemACoger.getDescription());
+        }
+        else{
+            System.out.println("Este objeto no se puede coger");
         
-        System.out.println("Has recogido" + itemACoger.getDescription());
+        }
     }
 }

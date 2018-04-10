@@ -60,8 +60,8 @@ public class Game
         //ubicacion jugador
 
         //Añadir objetos
-        comedor.addItem("coca","droga blanca", 200);
-        comedor.addItem("m","pastillas acidas",5);
+        comedor.addItem("coca","droga blanca", 200,true);
+        comedor.addItem("m","pastillas acidas",5,false);
 
         return hall;  // start game hall
     }

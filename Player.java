@@ -82,7 +82,19 @@ public class Player
         }
         else{
             System.out.println("Este objeto no se puede coger");
-        
+
+        }
+    }
+
+    public void items(){
+
+        if (!mochila.isEmpty()) {
+            for (Item itemActual : mochila) {
+                System.out.println(itemActual.getDescription());
+            }
+        }
+        else {
+            System.out.println("Tienes la mochila vacía.");
         }
     }
 }

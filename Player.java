@@ -13,6 +13,8 @@ public class Player
     private Stack<Room> stack;
     private ArrayList<Item> mochila;
     private Item item;
+    private int cargaActual;
+    private static final int carga_maxima = 300;
     /**
      * Constructor for objects of class player
      */
@@ -22,6 +24,7 @@ public class Player
         stack = new Stack();
         this.currentRoom = startRoom;
         mochila = new ArrayList<>();
+        cargaActual=0;
     }
 
     public Room getRoom(){
@@ -76,13 +79,13 @@ public class Player
     public void take(Command command){
         String item = command.getSecondWord();
         Item itemACoger = currentRoom.itemACoger(item);
-        if(itemACoger.getCogerObjeto()){
-            mochila.add(itemACoger);
-            System.out.println("Has recogido" + itemACoger.getDescription());
+        if(itemACoger.getPeso() + cargaActual > carga_maxima){
+            System.out.println("Peso maximo superado" + "desagase de algun objeto");
         }
         else{
-            System.out.println("Este objeto no se puede coger");
-
+            mochila.add(itemACoger);
+            cargaActual += itemACoger.getPeso() ;
+            System.out.println("Has recogido" + itemACoger.getDescription());
         }
     }
 
@@ -97,25 +100,25 @@ public class Player
             System.out.println("Tienes la mochila vacía.");
         }
     }
-    
-     public void drop(Command command)
+
+    public void drop(Command command)
     {
-        
-       
-            String item = command.getSecondWord();
-            Item itemABorrar = null;
-            for (Item itemASoltar : mochila) {
-                if (itemASoltar.getId().equals(item)) {
-                    itemABorrar= itemASoltar;                    
-                }
-            }
-            mochila.remove(itemABorrar);
-            if (itemABorrar == null) {
-                System.out.println("NO tienes ese objeto!");
-            }
-            else {
-                currentRoom.itemASoltar(itemABorrar);
-                System.out.println("Has soltado " + itemABorrar.getDescription() + ", con un peso de " + itemABorrar.getPeso());
+
+        String item = command.getSecondWord();
+        Item itemABorrar = null;
+        for (Item itemASoltar : mochila) {
+            if (itemASoltar.getId().equals(item)) {
+                itemABorrar= itemASoltar;                    
             }
         }
+        mochila.remove(itemABorrar);
+        if (itemABorrar == null) {
+            System.out.println("NO tienes ese objeto!");
+        }
+        else {
+            currentRoom.itemASoltar(itemABorrar);
+            cargaActual -= itemABorrar.getPeso();
+            System.out.println("Has soltado " + itemABorrar.getDescription() + ", con un peso de " + itemABorrar.getPeso());
+        }
     }
+}

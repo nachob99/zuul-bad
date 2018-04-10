@@ -62,6 +62,7 @@ public class Game
         //Añadir objetos
         comedor.addItem("coca","droga blanca", 200,true);
         comedor.addItem("m","pastillas acidas",5,false);
+        salon.addItem("maria","hierba", 200,true);
 
         return hall;  // start game hall
     }

@@ -11,16 +11,16 @@ public class Item
     private int itemWeigth;
     private String itemDescription;
     private String id;
-
+    private boolean cogerObjeto;
     /**
      * Constructor for objects of class item
      */
-    public Item(String id ,String description , int itemWeigth)
+    public Item(String id ,String description , int itemWeigth , boolean cogerObjeto)
     {
         this.id = id;
         this.itemDescription=description;
         this.itemWeigth = itemWeigth;
-
+        this.cogerObjeto = cogerObjeto;
     }
 
     public String getDescription(){
@@ -39,6 +39,12 @@ public class Item
     public String informacionItem(){
         return getDescription() + " " + ":" + " "+ getPeso() ;
 
+    }
+    
+
+    public boolean getCogerObjeto()
+    {
+        return cogerObjeto;
     }
     
 }

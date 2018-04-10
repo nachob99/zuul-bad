@@ -60,8 +60,9 @@ public class Game
         //ubicacion jugador
 
         //Añadir objetos
-        comedor.addItem("coca","droga blanca", 200);
-        comedor.addItem("m","pastillas acidas",5);
+        comedor.addItem("coca","droga blanca", 200,true);
+        comedor.addItem("m","pastillas acidas",5,false);
+        salon.addItem("maria","hierba", 200,true);
 
         return hall;  // start game hall
     }
@@ -127,6 +128,15 @@ public class Game
         }
         else if (commandWord.equals("back")) {
             player.back();
+        }
+        else if (commandWord.equals("take")){
+            player.take(command);
+        }
+        else if (commandWord.equals("items")){
+            player.items();
+        }
+        else if (commandWord.equals("drop")){
+            player.drop(command);
         }
 
         else if (commandWord.equals("quit")) {

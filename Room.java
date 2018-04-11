@@ -184,4 +184,9 @@ public class Room
         listaItems.add(item);
     
     }
+    
+    public void itemAPinchar(Item item){
+        listaItems.remove(item);
+    
+    }
 }

@@ -63,6 +63,7 @@ public class Game
         comedor.addItem("coca","droga blanca", 200,true);
         comedor.addItem("m","pastillas acidas",5,false);
         salon.addItem("maria","hierba", 200,true);
+        salon.addItem("speed","pastis", 350,true);
 
         return hall;  // start game hall
     }
@@ -137,6 +138,10 @@ public class Game
         }
         else if (commandWord.equals("drop")){
             player.drop(command);
+        }
+        
+        else if (commandWord.equals("give")){
+            player.give(command);
         }
 
         else if (commandWord.equals("quit")) {

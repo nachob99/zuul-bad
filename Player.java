@@ -15,6 +15,7 @@ public class Player
     private Item item;
     private int cargaActual;
     private static final int carga_maxima = 300;
+    private int cantidadDeDrogaEnSangre;
     /**
      * Constructor for objects of class player
      */
@@ -25,10 +26,15 @@ public class Player
         this.currentRoom = startRoom;
         mochila = new ArrayList<>();
         cargaActual=0;
+        cantidadDeDrogaEnSangre=0;
     }
 
     public Room getRoom(){
         return currentRoom;
+    }
+
+    public int getCantidadDeDrogaEnSangre(){
+        return cantidadDeDrogaEnSangre;
     }
 
     public void goRoom(Command command){
@@ -79,18 +85,32 @@ public class Player
     public void take(Command command){
         String item = command.getSecondWord();
         Item itemACoger = currentRoom.itemACoger(item);
-        if(itemACoger.getPeso() + cargaActual > carga_maxima){
-            System.out.println("Peso maximo superado" + "desagase de algun objeto");
+
+        if(itemACoger == null){
+            System.out.println("No hay objetos");
         }
         else{
-            mochila.add(itemACoger);
-            cargaActual += itemACoger.getPeso() ;
-            System.out.println("Has recogido" + itemACoger.getDescription());
+            if(itemACoger.getCogerObjeto()){
+                if(itemACoger.getPeso() + cargaActual > carga_maxima){
+                    System.out.println("Peso maximo superado" + "desagase de algun objeto");
+                    currentRoom.itemASoltar(itemACoger);
+                }
+                else{
+                    mochila.add(itemACoger);
+                    cargaActual += itemACoger.getPeso() ;
+                    System.out.println("Has recogido" + itemACoger.getDescription());
+                }
+            }
+            else{
+                System.out.println("NO PUEDES COGER OBJETO");
+                currentRoom.itemASoltar(itemACoger);
+            }
+
         }
     }
+    
 
     public void items(){
-
         if (!mochila.isEmpty()) {
             for (Item itemActual : mochila) {
                 System.out.println(itemActual.getDescription());
@@ -119,6 +139,26 @@ public class Player
             currentRoom.itemASoltar(itemABorrar);
             cargaActual -= itemABorrar.getPeso();
             System.out.println("Has soltado " + itemABorrar.getDescription() + ", con un peso de " + itemABorrar.getPeso());
+        }
+    }
+
+    public void give(Command command){
+        String item = command.getSecondWord();
+        Item itemAMeterse = null;
+        for (Item itemAPinchar : mochila) {
+            if (itemAPinchar.getId().equals(item)) {
+                itemAMeterse= itemAPinchar;                    
+            }
+        }
+        mochila.remove(itemAMeterse);
+        if (itemAMeterse == null) {
+            System.out.println("NO tienes ese objeto!");
+        }
+        else {
+            currentRoom.itemAPinchar(itemAMeterse);
+            cantidadDeDrogaEnSangre += itemAMeterse.getPeso();
+
+            System.out.println("El jugador Nacho tiene una cantidad de droga en sangre de" + getCantidadDeDrogaEnSangre());
         }
     }
 }

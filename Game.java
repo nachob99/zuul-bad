@@ -20,6 +20,7 @@ public class Game
 {
     private Parser parser;
     private Player player;
+    private CommandWord word;
     /**
      * Create the game and initialise its internal map.
      */
@@ -104,49 +105,48 @@ public class Game
      * @param command The command to be processed.
      * @return true If the command ends the game, false otherwise.
      */
-    private boolean processCommand(Command command) 
+    private boolean processCommand(Command  command) 
     {
         boolean wantToQuit = false;
-
-        if(command.isUnknown()) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-
-        String commandWord = command.getCommandWord();
-        if (commandWord.equals("help")) {
-            printHelp();
-        }
-
-        else if (commandWord.equals("look")) {
-            player.look();
-        }
-        else if (commandWord.equals("eat")) {
-            player.eat();
-        }
-        else if (commandWord.equals("go")) {
-            player.goRoom(command);
-        }
-        else if (commandWord.equals("back")) {
-            player.back();
-        }
-        else if (commandWord.equals("take")){
-            player.take(command);
-        }
-        else if (commandWord.equals("items")){
-            player.items();
-        }
-        else if (commandWord.equals("drop")){
-            player.drop(command);
+        switch (word){
+            case UNKNOWN:
+                System.out.println("I don't know what you mean...");
+                break;
+            case HELP:
+                printHelp();
+                break;
+            case  LOOK:
+                player.look();
+                break;
+            case EAT:
+                player.eat();
+                break;
+            case GO:
+                player.goRoom(command);
+                break;
+            case BACK:
+                player.back();
+                break;
+            case TAKE:
+                player.take(command);
+                break;
+            case ITEMS:
+                player.items();
+                break;
+            case DROP:
+                player.drop(command);
+                break;
+            case GIVE:
+                player.give(command);
+                break;
+            case QUIT:
+                wantToQuit = quit(command);
+                break;
+            
+        
+        
         }
         
-        else if (commandWord.equals("give")){
-            player.give(command);
-        }
-
-        else if (commandWord.equals("quit")) {
-            wantToQuit = quit(command);
-        }
 
         return wantToQuit;
     }

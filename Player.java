@@ -150,14 +150,14 @@ public class Player
                 itemAMeterse= itemAPinchar;                    
             }
         }
-        mochila.remove(itemAMeterse);
+        
         if (itemAMeterse == null) {
             System.out.println("NO tienes ese objeto!");
         }
         else {
             currentRoom.itemAPinchar(itemAMeterse);
             cantidadDeDrogaEnSangre += itemAMeterse.getPeso();
-
+            mochila.remove(itemAMeterse);
             System.out.println("El jugador Nacho tiene una cantidad de droga en sangre de" + getCantidadDeDrogaEnSangre());
         }
     }

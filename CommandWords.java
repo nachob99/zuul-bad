@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class CommandWords
 {
-    // a constant array that holds all valid command words
+
     private HashMap<String,CommandWord> validCommands;
     private CommandWord command;
     /**
@@ -40,14 +40,9 @@ public class CommandWords
      * @return true if a given string is a valid command,
      * false if it isn't.
      */
-    public boolean isCommand(CommandWord aString)
+    public boolean isCommand(String aString)
     {
-        for(int i = 0; i < validCommands.size(); i++) {
-            if(aString.equals(validCommands.keySet()))
-                return true;
-        }
-        // if we get here, the string was not found in the commands
-        return false;
+        return validCommands.containsKey(aString);
     }
 
     /**
@@ -57,7 +52,7 @@ public class CommandWords
     {
         String comandos = "";
         for(String comands : validCommands.keySet()){
-            comandos = comands + "";        
+            comandos = comands + " ";        
         }
 
         return comandos;
@@ -73,3 +68,4 @@ public class CommandWords
         return validCommands.get(commandWord);
     }
 }
+
